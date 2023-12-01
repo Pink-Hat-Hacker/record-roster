@@ -2,5 +2,12 @@
 
 .App {
   text-align: center;
+  border-style: solid;
+  border-width: 5px;
+  border-color: red;
 }
-
+.header {
+  padding: 1em;
+  background-color: black;
+  color: white;
+}

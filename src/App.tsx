@@ -6,6 +6,9 @@ import { Dashboard } from './components/Dashboard';
 function App() {
   return (
     <div className="App">
+      <div className='header'>
+        <h1>Record Roster <i className="bi bi-vinyl"></i></h1>
+      </div>
       {/* <Login></Login> */}
       <Dashboard></Dashboard>
       {/* <footer>

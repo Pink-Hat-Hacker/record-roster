@@ -1,30 +1,34 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
+import AddAlbumModal from './AddAlbumModal';
 import React, { useState } from 'react';
-import { Button, Col, Container, ListGroup, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { Button, ListGroup, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 
 export function Dashboard() {
     return (
-        <Container>
+        <div>
             <ColumnWithOptions></ColumnWithOptions>
-        </Container>
+        </div>
     );
 }
 
 const ColumnWithOptions: React.FC = () => {
     const [showOptions, setShowOptions] = useState(false);
+    const [showAddAlbumModal, setShowAddAlbumModal] = useState(false);
 
     const handleToggleOptions = () => {
         setShowOptions(!showOptions);
     };
 
     const handleOptionClick = (option: string) => {
-        // Handle option click logic here
+        if (option === 'manual') {
+            setShowAddAlbumModal(true);
+        }
         console.log(`Selected option: ${option}`);
         setShowOptions(false);
     };
     return (
-        <Col className="d-flex align-items-center justify-content-flex-start" id='add-album-col'>
+        <div className="d-flex align-items-center justify-content-flex-start" id='add-album-col'>
             <OverlayTrigger
                 placement="right"
                 overlay={<Tooltip id="tooltip">Select an option</Tooltip>}
@@ -45,6 +49,8 @@ const ColumnWithOptions: React.FC = () => {
                     </Button>
                 </ListGroup>
             )}
-        </Col>
+            {/* AddAlbumModal */}
+            <AddAlbumModal show={showAddAlbumModal} onHide={() => setShowAddAlbumModal(false)} />
+        </div>
     );
 };
