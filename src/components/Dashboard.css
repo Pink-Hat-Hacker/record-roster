@@ -1,1 +1,16 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+#add-album-col {
+    width: fit-content;
+    height: 100vh;
+}
+#p-c-icon {
+    scale: 3;
+}
+
+.options-list {
+    padding-left: 1.2em;
+}
+.options-list button {
+    font-size: 2em;
+}

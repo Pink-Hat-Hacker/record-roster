@@ -6,9 +6,7 @@ import { Button, Col, Container, ListGroup, OverlayTrigger, Row, Tooltip } from 
 export function Dashboard() {
     return (
         <Container>
-            <Row>
-                <ColumnWithOptions></ColumnWithOptions>
-            </Row>
+            <ColumnWithOptions></ColumnWithOptions>
         </Container>
     );
 }
@@ -23,26 +21,24 @@ const ColumnWithOptions: React.FC = () => {
     const handleOptionClick = (option: string) => {
         // Handle option click logic here
         console.log(`Selected option: ${option}`);
-        // You can close the options after selection if needed
         setShowOptions(false);
     };
-
     return (
-        <Col xs={2}>
+        <Col className="d-flex align-items-center justify-content-flex-start" id='add-album-col'>
             <OverlayTrigger
                 placement="right"
                 overlay={<Tooltip id="tooltip">Select an option</Tooltip>}
             >
-                <i className="bi bi-plus-circle" onClick={handleToggleOptions}></i>
+                <i className="bi bi-plus-circle" id='p-c-icon' onClick={handleToggleOptions}></i>
             </OverlayTrigger>
 
             {showOptions && (
                 <ListGroup className="options-list">
                     <Button variant="light" onClick={() => handleOptionClick('manual')}>
-                        Manual
+                        Manual Entry
                     </Button>
                     <Button variant="light" onClick={() => handleOptionClick('barcode')}>
-                        Barcode
+                        Barcode Scan
                     </Button>
                     <Button variant="light" onClick={() => handleOptionClick('image-detection')}>
                         Image Detection
