@@ -1,10 +1,12 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 #add-album-col {
-  height: 90vh;
-  width: fit-content;
   padding: 2em;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(0, 255, 60);
 }
 #p-c-icon {
   scale: 3;
@@ -14,5 +16,11 @@
   padding-left: 1.2em;
 }
 .options-list button {
-  font-size: 2em;
+  font-size: 1.5em;
+}
+
+.populate-cards {
+  border-style: solid;
+  border-width: 5px;
+  border-color: blue;
 }

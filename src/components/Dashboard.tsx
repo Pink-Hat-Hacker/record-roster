@@ -1,14 +1,30 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
+import testIMG from '../assets/test.jpeg';
 import AddAlbumModal from './AddAlbumModal';
 import React, { useState } from 'react';
-import { Button, ListGroup, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { Container, Button, Card, ListGroup, OverlayTrigger, Row, Col, Tooltip } from 'react-bootstrap';
 
 export function Dashboard() {
     return (
-        <div>
-            <ColumnWithOptions></ColumnWithOptions>
-        </div>
+        <Container className='dash-container'>
+            <Row>
+                <ColumnWithOptions></ColumnWithOptions>
+                <Col className='populate-cards'>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant='top' src={testIMG} />
+                        <Card.Body>
+                            <Card.Title>Card Title</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                            <Button variant="primary">Go somewhere</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
@@ -28,7 +44,7 @@ const ColumnWithOptions: React.FC = () => {
         setShowOptions(false);
     };
     return (
-        <div className="d-flex align-items-center justify-content-flex-start" id='add-album-col'>
+        <Col className="d-flex align-items-center justify-content-flex-start" id='add-album-col'>
             <OverlayTrigger
                 placement="right"
                 overlay={<Tooltip id="tooltip">Select an option</Tooltip>}
@@ -37,20 +53,20 @@ const ColumnWithOptions: React.FC = () => {
             </OverlayTrigger>
 
             {showOptions && (
-                <ListGroup className="options-list">
-                    <Button variant="light" onClick={() => handleOptionClick('manual')}>
+                <ListGroup className="options-list" variant="flush">
+                    <ListGroup.Item action onClick={() => handleOptionClick('manual')}>
                         Manual Entry
-                    </Button>
-                    <Button variant="light" onClick={() => handleOptionClick('barcode')}>
+                    </ListGroup.Item>
+                    <ListGroup.Item action onClick={() => handleOptionClick('barcode')}>
                         Barcode Scan
-                    </Button>
-                    <Button variant="light" onClick={() => handleOptionClick('image-detection')}>
+                    </ListGroup.Item>
+                    <ListGroup.Item action onClick={() => handleOptionClick('image-detection')}>
                         Image Detection
-                    </Button>
+                    </ListGroup.Item>
                 </ListGroup>
             )}
             {/* AddAlbumModal */}
             <AddAlbumModal show={showAddAlbumModal} onHide={() => setShowAddAlbumModal(false)} />
-        </div>
+        </Col>
     );
 };
