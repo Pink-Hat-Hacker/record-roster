@@ -7,8 +7,8 @@ import { Container, Button, Card, ListGroup, OverlayTrigger, Row, Col, Tooltip }
 
 export function Dashboard() {
     return (
-        <Container className='dash-container'>
-            <Row>
+        <div className='dash-container'>
+            <Row className='dash-container-row'>
                 <ColumnWithOptions></ColumnWithOptions>
                 <Col className='populate-cards'>
                     <Card style={{ width: '18rem' }}>
@@ -24,7 +24,7 @@ export function Dashboard() {
                     </Card>
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 
