@@ -20,18 +20,37 @@ const AddAlbumModal: React.FC<AddAlbumModalProps> = ({ show, onHide }) => {
         setSelectedImage(file);
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         console.log('Album data:', { artistName, albumName, labelId, notes, selectedImage });
-        // send to mongo
+        try {
+            const formData = new FormData();
+            formData.append('artistName', artistName);
+            formData.append('albumName', albumName);
+            formData.append('year', year);
+            formData.append('labelId', labelId);
+            formData.append('notes', notes);
+            formData.append('selectedImage', selectedImage || '');
 
-        //reset to empty when closed
-        setArtistName('');
-        setAlbumName('');
-        setYear('');
-        setLabelId('');
-        setNotes('');
-        setSelectedImage(undefined);
-        onHide();
+            const response = await fetch('http://localhost:5000/api/albums', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                console.log('Album saved successfully');
+                // You can add further logic if needed
+                setArtistName('');
+                setAlbumName('');
+                setLabelId('');
+                setNotes('');
+                setSelectedImage(undefined);
+                onHide();
+            } else {
+                console.error('Failed to save album');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
